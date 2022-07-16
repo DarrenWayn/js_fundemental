@@ -877,31 +877,55 @@ const restaurants = {
   },
 };
 
-if (restaurants.openingHours && restaurants.openingHours.mon)
-  console.log(restaurants.openingHours.mon.open);
+// property name
+const properties = Object.keys(openingHours);
+console.log(properties);
 
-// optional chainning
-console.log(restaurants.openingHours.mon?.open);
-console.log(restaurants.openingHours?.mon?.open);
+let openStr = `We are open on ${properties.length} days: `;
 
-// Example
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+console.log(openStr);
 
-for (const day of days) {
-  console.log(day);
-  // if we want to use a varaible name as property name we have to use the bracket notation
-  const open = restaurants.openingHours[day]?.open ?? 'closed';
-  console.log(`On ${day}, we open at ${open}`);
+// property values
+const values = Object.values(openingHours);
+console.log(values);
+
+// Entries that turn object into arrays
+const entries = Object.entries(openingHours);
+// console.log(entries);
+
+// [key, value]
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
 }
 
-// Methods
-console.log(restaurants.order?.(0, 1) ?? 'Method does not exist');
-console.log(restaurants.orderRisoto?.(0, 1) ?? 'Method does not exist');
+// if (restaurants.openingHours && restaurants.openingHours.mon)
+//   console.log(restaurants.openingHours.mon.open);
 
-// Arrays
-const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+// // optional chainning
+// console.log(restaurants.openingHours.mon?.open);
+// console.log(restaurants.openingHours?.mon?.open);
 
-console.log(users[0]?.name ?? 'User arary empty');
+// Example
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// for (const day of days) {
+//   console.log(day);
+//   // if we want to use a varaible name as property name we have to use the bracket notation
+//   const open = restaurants.openingHours[day]?.open ?? 'closed';
+//   console.log(`On ${day}, we open at ${open}`);
+// }
+
+// // Methods
+// console.log(restaurants.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurants.orderRisoto?.(0, 1) ?? 'Method does not exist');
+
+// // Arrays
+// const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+
+// console.log(users[0]?.name ?? 'User arary empty');
 
 // if(users.length > 0) console.log(users[0]?.name) else console.log('users array empty)
 // const menu = [...restaurants.starterMenu, ...restaurants.mainMenu];
