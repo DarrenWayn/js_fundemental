@@ -830,6 +830,22 @@
 // console.log('After Married', jessicaCopy);
 
 // 103. Destructring array
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0,
+    close: 24,
+  },
+};
+
 const restaurants = {
   name: 'Classical Italiano',
   location: 'Pluit Kencana 5 No 12',
@@ -837,57 +853,81 @@ const restaurants = {
   starterMenu: ['capcay', 'crab', 'dimsum'],
   mainMenu: ['Pizza', 'Pasta', 'Meat'],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0,
-      close: 24,
-    },
-  },
+  // es6 enhance object literals
+  openingHours,
 
-  order: function (starterIndex, mainIndex) {
+  // function experssion
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  orderDelivery: function ({
-    starterIndex = 1,
-    mainIndex = 0,
-    time = '20:00',
-    address,
-  }) {
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
     console.log(
       `Order Receive ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
 
-  orderPizza: function (mainIngredient, ...otherIngredients) {
+  orderPizza(mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
     console.log(otherIngredients);
   },
 };
 
-const rest1 = {
-  name: 'Capri',
-  // numGuests: 20,
-  numGuests: 0,
-};
+if (restaurants.openingHours && restaurants.openingHours.mon)
+  console.log(restaurants.openingHours.mon.open);
 
-// there's no guest so the value will be undefined
-const rest2 = {
-  name: 'La Piazza',
-  owner: 'Giovanni Rossi',
-};
+// optional chainning
+console.log(restaurants.openingHours.mon?.open);
+console.log(restaurants.openingHours?.mon?.open);
+
+// Example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  console.log(day);
+  // if we want to use a varaible name as property name we have to use the bracket notation
+  const open = restaurants.openingHours[day]?.open ?? 'closed';
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// Methods
+console.log(restaurants.order?.(0, 1) ?? 'Method does not exist');
+console.log(restaurants.orderRisoto?.(0, 1) ?? 'Method does not exist');
+
+// Arrays
+const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+
+console.log(users[0]?.name ?? 'User arary empty');
+
+// if(users.length > 0) console.log(users[0]?.name) else console.log('users array empty)
+// const menu = [...restaurants.starterMenu, ...restaurants.mainMenu];
+
+// // for of loop
+// for (const item of menu) console.log(item);
+
+// // get the current index
+// for (const [i, el] of menu.entries()) {
+//   // console.log(`${item[0] + 1}: ${item[1]}`);
+//   console.log(`${i + 1}: ${el}`);
+// }
+
+// console.log(...menu.entries());
+
+// const rest1 = {
+//   name: 'Capri',
+//   // numGuests: 20,
+//   numGuests: 0,
+// };
+
+// // there's no guest so the value will be undefined
+// const rest2 = {
+//   name: 'La Piazza',
+//   owner: 'Giovanni Rossi',
+// };
 
 // OR Assignmeent Operator
 // rest1.numGuests = rest1.numGuests || 10;
@@ -902,15 +942,15 @@ const rest2 = {
 // rest1.owner = rest1.owner && '<ANONYMOUS>';
 // rest2.owner = rest2.owner && '<ANONYMOUS>';
 
-rest1.owner &&= '<ANONYMOUS>';
-rest2.owner &&= '<ANONYMOUS>';
+// rest1.owner &&= '<ANONYMOUS>';
+// rest2.owner &&= '<ANONYMOUS>';
 
-// nullish assignment operator (null, undefined)
-rest1.numGuests ??= 10;
-rest2.numGuests ??= 10;
+// // nullish assignment operator (null, undefined)
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
 
-console.log(rest1);
-console.log(rest2);
+// console.log(rest1);
+// console.log(rest2);
 
 // console.log('----- OR -----');
 // // USE ANT data type, return ANY data type, short-circuting
