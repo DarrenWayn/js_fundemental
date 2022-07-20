@@ -877,15 +877,157 @@ const restaurants = {
   },
 };
 
-const question = new Map([
-  ['question', 'What is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  ['correct', 3],
-  [true, 'Correct'],
-  [false, 'Try Again!'],
-]);
+// Split and Join
+console.log('a+very+nice+string'.split('+'));
+console.log('Darren Wayn'.split(' '));
+
+const [firstName, lastName] = 'Darren Wayn'.split(' ');
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+  // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+  for (const n of names) namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  console.log(namesUpper.join(' '));
+};
+
+capitalizeName('jessica ann smith davis');
+capitalizeName('darren wayn');
+
+// Padding
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+').padEnd(35, '+'));
+console.log('Darren'.padStart(20, '+').padEnd(30, '+'));
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(344885858200200484));
+console.log(maskCreditCard(45488585820020048239872));
+console.log(maskCreditCard('3448858582002004823987234'));
+
+// Repeat
+const message2 = 'Bad weather... All Departures Delayed...';
+console.log(message2.repeat(5));
+
+const planesInline = function (n) {
+  console.log(`There are $[n] planes in line ${'lol'.repeat(n)}`);
+};
+planesInline(5);
+planesInline(3);
+planesInline(12);
+
+// const airline = 'TAP Air Portugal';
+// // const plane = 'A320';
+
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+
+// // Fix capitalization in name
+// const passenger = 'jOnAS'; // Jonas
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passengerCorrect);
+
+// // Comparing email
+// const email = 'hello@darren.io';
+// const loginEmail = '  Hello@darren.Io \n';
+
+// // const lowerEmail = loginEmail.toLowerCase();
+// // const trimmedEmail = lowerEmail.trim();
+// // console.log(trimmedEmail);
+
+// const normalizeEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizeEmail);
+// console.log(email === normalizeEmail);
+
+// //  Replacing
+// const priceGB = '288,97#';
+// const priceUS = priceGB.replace('#', '$').replace(',', '.');
+// console.log(priceUS);
+
+// const announcement =
+//   'All passenger come to boarding door 23, Boarding door 23!';
+// console.log(announcement.replace('door', 'gate'));
+// console.log(announcement.replace(/door/g, 'gate'));
+
+// console.log(announcement.replaceAll('door', 'gate'));
+
+// // Booleans
+// const plane = 'Airbus A320neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.startsWith('Air'));
+
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the NEW Airbus family');
+// }
+
+// // Practice Execise
+// const checkBagage = function (items) {
+//   const bagage = items.toLowerCase();
+//   if (bagage.includes('knife') || bagage.includes('gun')) {
+//     console.log('You are NOT allowed on board');
+//   } else {
+//     console.log('Welcome aboard');
+//   }
+// };
+
+// checkBagage('Ihave a laptop, some food and a pocket');
+// checkBagage('Socks and camera');
+// checkBagage('Got some snacks and a gun for protection');
+
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
+// console.log('B737'[0]);
+
+// console.log(airline.length);
+// console.log('B737'.length);
+
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+// console.log(airline.indexOf('Portugal'));
+
+// console.log(airline.slice(4));
+// console.log(airline.slice(4, 7));
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(0, airline.lastIndexOf(' ') + 1));
+
+// console.log(airline.slice(-2));
+// console.log(airline.slice(1, -1));
+
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seats
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E') console.log(`You got the middle seat`);
+//   else console.log('You got Lucky!');
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
+
+// // js behind the sceen turn string into object
+// console.log(new String('Darren'));
+
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct'],
+//   [false, 'Try Again!'],
+// ]);
 
 // console.log(question);
 
@@ -895,23 +1037,23 @@ const question = new Map([
 // console.log(hoursMap);
 
 // Quiz App
-console.log(question.get('question'));
+// console.log(question.get('question'));
 
-for (const [key, value] of question) {
-  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
-}
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
 
-// const answer = Number(prompt('Your Answer'));
-const answer = 3;
-console.log(answer);
+// // const answer = Number(prompt('Your Answer'));
+// const answer = 3;
+// console.log(answer);
 
-console.log(question.get(question.get('correct') === answer));
+// console.log(question.get(question.get('correct') === answer));
 
-// convert map to array
-console.log([...question]);
-console.log([question.entries()]);
-console.log([question.keys()]);
-console.log([question.values()]);
+// // convert map to array
+// console.log([...question]);
+// console.log([question.entries()]);
+// console.log([question.keys()]);
+// console.log([question.values()]);
 
 // const rest = new Map();
 // rest.set('name', 'Classico Italiano');
