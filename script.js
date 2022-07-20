@@ -830,98 +830,121 @@
 // console.log('After Married', jessicaCopy);
 
 // 103. Destructring array
-const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-const openingHours = {
-  [weekdays[3]]: {
-    open: 12,
-    close: 22,
-  },
-  [weekdays[4]]: {
-    open: 11,
-    close: 23,
-  },
-  [weekdays[5]]: {
-    open: 0,
-    close: 24,
-  },
-};
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+//   [weekdays[5]]: {
+//     open: 0,
+//     close: 24,
+//   },
+// };
 
-const restaurants = {
-  name: 'Classical Italiano',
-  location: 'Pluit Kencana 5 No 12',
-  categories: ['chinese', 'thai', 'malaysia'],
-  starterMenu: ['capcay', 'crab', 'dimsum'],
-  mainMenu: ['Pizza', 'Pasta', 'Meat'],
+// const restaurants = {
+//   name: 'Classical Italiano',
+//   location: 'Pluit Kencana 5 No 12',
+//   categories: ['chinese', 'thai', 'malaysia'],
+//   starterMenu: ['capcay', 'crab', 'dimsum'],
+//   mainMenu: ['Pizza', 'Pasta', 'Meat'],
 
-  // es6 enhance object literals
-  openingHours,
+//   // es6 enhance object literals
+//   openingHours,
 
-  // function experssion
-  order(starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
+//   // function experssion
+//   order(starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
 
-  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
-    console.log(
-      `Order Receive ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-    );
-  },
+//   orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+//     console.log(
+//       `Order Receive ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
 
-  orderPasta(ing1, ing2, ing3) {
-    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
-  },
+//   orderPasta(ing1, ing2, ing3) {
+//     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+//   },
 
-  orderPizza(mainIngredient, ...otherIngredients) {
-    console.log(mainIngredient);
-    console.log(otherIngredients);
-  },
-};
+//   orderPizza(mainIngredient, ...otherIngredients) {
+//     console.log(mainIngredient);
+//     console.log(otherIngredients);
+//   },
+// };
 
-// Split and Join
-console.log('a+very+nice+string'.split('+'));
-console.log('Darren Wayn'.split(' '));
+// // Split and Join
+// console.log('a+very+nice+string'.split('+'));
+// console.log('Darren Wayn'.split(' '));
 
-const [firstName, lastName] = 'Darren Wayn'.split(' ');
+// const [firstName, lastName] = 'Darren Wayn'.split(' ');
 
-const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
-console.log(newName);
+// const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+// console.log(newName);
 
-const capitalizeName = function (name) {
-  const names = name.split(' ');
-  const namesUpper = [];
-  // namesUpper.push(n[0].toUpperCase() + n.slice(1));
-  for (const n of names) namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
-  console.log(namesUpper.join(' '));
-};
+// const capitalizeName = function (name) {
+//   const names = name.split(' ');
+//   const namesUpper = [];
+//   // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+//   for (const n of names) namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+//   console.log(namesUpper.join(' '));
+// };
 
-capitalizeName('jessica ann smith davis');
-capitalizeName('darren wayn');
+// capitalizeName('jessica ann smith davis');
+// capitalizeName('darren wayn');
 
-// Padding
-const message = 'Go to gate 23!';
-console.log(message.padStart(25, '+').padEnd(35, '+'));
-console.log('Darren'.padStart(20, '+').padEnd(30, '+'));
+// // Padding
+// const message = 'Go to gate 23!';
+// console.log(message.padStart(25, '+').padEnd(35, '+'));
+// console.log('Darren'.padStart(20, '+').padEnd(30, '+'));
 
-const maskCreditCard = function (number) {
-  const str = number + '';
-  const last = str.slice(-4);
-  return last.padStart(str.length, '*');
-};
+// const maskCreditCard = function (number) {
+//   const str = number + '';
+//   const last = str.slice(-4);
+//   return last.padStart(str.length, '*');
+// };
 
-console.log(maskCreditCard(344885858200200484));
-console.log(maskCreditCard(45488585820020048239872));
-console.log(maskCreditCard('3448858582002004823987234'));
+// console.log(maskCreditCard(344885858200200484));
+// console.log(maskCreditCard(45488585820020048239872));
+// console.log(maskCreditCard('3448858582002004823987234'));
 
-// Repeat
-const message2 = 'Bad weather... All Departures Delayed...';
-console.log(message2.repeat(5));
+// // Repeat
+// const message2 = 'Bad weather... All Departures Delayed...';
+// console.log(message2.repeat(5));
 
-const planesInline = function (n) {
-  console.log(`There are $[n] planes in line ${'lol'.repeat(n)}`);
-};
-planesInline(5);
-planesInline(3);
-planesInline(12);
+// const planesInline = function (n) {
+//   console.log(`There are $[n] planes in line ${'lol'.repeat(n)}`);
+// };
+// planesInline(5);
+// planesInline(3);
+// planesInline(12);
+
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+
+// console.log(flights.split('+'));
+
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  const output = `${type.startsWith('_Delayed') ? '🔴' : ''} ${type.replaceAll(
+    '_',
+    ' '
+  )} ${getCode(from)} to ${getCode(to)} (${time.replace(':', 'h')})`.padStart(
+    50
+  );
+  console.log(output);
+}
 
 // const airline = 'TAP Air Portugal';
 // // const plane = 'A320';
