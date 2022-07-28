@@ -89,18 +89,116 @@
 // ['Jonas', 'Martha', 'Adam'].forEach(high5);
 
 // Function returning function
-const greet = function (greeting) {
-  return function (name) {
-    console.log(`${greeting} ${name}`);
-  };
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// const greeterHey = greet('Hey');
+// greeterHey('Jonas');
+// greeterHey('Darren');
+
+// greet('Hello')('Darren');
+
+// // Challenge
+// const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+
+// greetArr('Hi')('Darren');
+
+// The call and apply methods
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // book: function () {}
+  book(flightNum, name) {
+    console.log(
+      `${name} booked on ${this.airline} flight ${this.iataCode} ${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode} ${flightNum}, name` });
+  },
 };
-const greeterHey = greet('Hey');
-greeterHey('Jonas');
-greeterHey('Darren');
 
-greet('Hello')('Darren');
+lufthansa.book(239, 'Darren Wayn');
+lufthansa.book(325, 'John Smith');
+console.log(lufthansa);
 
-// Challenge
-const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
 
-greetArr('Hi')('Darren');
+const book = lufthansa.book;
+
+book.call(eurowings, 23, 'Sarah William');
+console.log(eurowings);
+
+book.call(lufthansa, 239, 'Marry Coopers');
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Air lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss, 239, 'Marry Coopers');
+console.log(swiss);
+
+// Apply Method (this apply method is rarely use in modern javascript)
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);
+
+// Bind Method (Most Important)
+// Bind return a new function
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(23, 'Steven Williams');
+
+const bookEW23 = book.bind(eurowings, 12345);
+bookEW23('Darren Wayn');
+bookEW23('Martha Wayn');
+
+// With Event Listeners
+lufthansa.planes = 300
+lufthansa.buyPlane() = function () {
+    console.log(this)
+
+    this.planes++
+    console.log(this.planes);
+}
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa))
+
+  // Partial Application means we can preset parameters
+  const addTax = (rate, value) => value + value * rate
+console.log(addTax(0.1, 200))
+
+const addVat = addTax.bind(null, 0.23)
+// addVat = value => value + value * 0.23
+  
+console.log(addVat(100))
+console.log(addVat(23))
+
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value + rate
+  }
+}
+
+const addVat2 = addTaxRate(0.23)
+
+
+console.log(addVat2(100))
+console.log(addVat2(23))
+
