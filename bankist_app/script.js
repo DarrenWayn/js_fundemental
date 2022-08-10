@@ -84,7 +84,7 @@ const displayMovements = function (movements) {
           <div class="movements__type movements__type--${type}">
             ${i + 1} ${type}
           </div>
-          <div class="movements__value">-${mov}</div>
+          <div class="movement s__value">-${mov}</div>
         </div>
     `;
 
@@ -93,6 +93,38 @@ const displayMovements = function (movements) {
 };
 
 displayMovements(account1.movements);
-console.log(containerMovements.innerHTML);
 
+const user = 'Steven Thomas Williams';
+const createUsernames = user => {
+  const username = user
+    .toLowerCase()
+    .split(' ')
+    .map(name => name[0])
+    .join('');
+  return username;
+};
+// console.log(username);
+console.log(createUsernames(user));
 /////////////////////////////////////////////////
+const eurToUsd = 1.1;
+
+// const movementsUsd = movements.map(function (mov) {
+//   return mov + eurToUsd;
+// });
+
+const movementsUsd = movements.map(mov => mov * eurToUsd);
+
+console.log(movements);
+console.log(movementsUsd);
+
+const movementsUsdFor = [];
+for (const mov of movements) movementsUsdFor.push(mov * eurToUsd);
+console.log(movementsUsdFor);
+
+const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+console.log(movementsDescriptions);
