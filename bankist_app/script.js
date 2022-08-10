@@ -94,37 +94,52 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
-const user = 'Steven Thomas Williams';
-const createUsernames = user => {
-  const username = user
-    .toLowerCase()
-    .split(' ')
-    .map(name => name[0])
-    .join('');
-  return username;
-};
+// const user = 'Steven Thomas Williams';
+// const createUsernames = accs => {
+//   accs.forEach(acc => {
+//     acc.username = acc.owner
+//       .toLowerCase()
+//       .split(' ')
+//       .map(name => name[0])
+//       .join('');
+//   });
+// };
 // console.log(username);
-console.log(createUsernames(user));
-/////////////////////////////////////////////////
-const eurToUsd = 1.1;
+// console.log(accounts);
+// /////////////////////////////////////////////////
+// const eurToUsd = 1.1;
 
 // const movementsUsd = movements.map(function (mov) {
 //   return mov + eurToUsd;
 // });
 
-const movementsUsd = movements.map(mov => mov * eurToUsd);
+// const movementsUsd = movements.map(mov => mov * eurToUsd);
 
-console.log(movements);
-console.log(movementsUsd);
+// console.log(movements);
+// console.log(movementsUsd);
 
-const movementsUsdFor = [];
-for (const mov of movements) movementsUsdFor.push(mov * eurToUsd);
-console.log(movementsUsdFor);
+// const movementsUsdFor = [];
+// for (const mov of movements) movementsUsdFor.push(mov * eurToUsd);
+// console.log(movementsUsdFor);
 
-const movementsDescriptions = movements.map(
-  (mov, i) =>
-    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
-      mov
-    )}`
-);
-console.log(movementsDescriptions);
+// const movementsDescriptions = movements.map(
+//   (mov, i) =>
+//     `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+//       mov
+//     )}`
+// );
+// console.log(movementsDescriptions);
+
+// const deposits = movements.filter(function (mov) {
+//   return mov > 0;
+// });
+
+// console.log(movements);
+// console.log(deposits);
+
+// const depositsFor = [];
+// for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+// console.log(depositsFor);
+
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(withdrawals);
