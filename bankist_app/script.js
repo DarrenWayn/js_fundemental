@@ -94,18 +94,29 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+const calcDisplayBalance = movements => {
+  const balance = movements.reduce(
+    (accumulator, currentMovement) => accumulator + currentMovement,
+    0
+  );
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements);
+
 // const user = 'Steven Thomas Williams';
-// const createUsernames = accs => {
-//   accs.forEach(acc => {
-//     acc.username = acc.owner
-//       .toLowerCase()
-//       .split(' ')
-//       .map(name => name[0])
-//       .join('');
-//   });
-// };
+const createUsernames = accs => {
+  accs.forEach(acc => {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
 // console.log(username);
-// console.log(accounts);
+console.log(accounts);
+
 // /////////////////////////////////////////////////
 // const eurToUsd = 1.1;
 
@@ -130,7 +141,7 @@ displayMovements(account1.movements);
 // );
 // console.log(movementsDescriptions);
 
-// const deposits = movements.filter(function (mov) {
+// const deposits = movements.filter(function (mov, i, arr) {
 //   return mov > 0;
 // });
 
@@ -141,5 +152,28 @@ displayMovements(account1.movements);
 // for (const mov of movements) if (mov > 0) depositsFor.push(mov);
 // console.log(depositsFor);
 
-const withdrawals = movements.filter(mov => mov < 0);
-console.log(withdrawals);
+// const withdrawals = movements.filter(mov => mov < 0);
+// console.log(withdrawals);
+
+console.log(movements);
+
+//accumulator is like a snowball
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration Number ${i}: ${acc} in array: ${arr}`);
+//   return acc + cur;
+// }, 0);
+
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+
+console.log(max);
