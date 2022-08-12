@@ -99,10 +99,34 @@ const calcDisplayBalance = movements => {
     (accumulator, currentMovement) => accumulator + currentMovement,
     0
   );
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance}€`;
 };
 
 calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter((int, i, arr) => {
+      console.log(arr);
+      return int >= 1;
+    })
+    .reduce((accumulator, interest) => accumulator + interest, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+
+calcDisplaySummary(account1.movements);
 
 // const user = 'Steven Thomas Williams';
 const createUsernames = accs => {
@@ -155,25 +179,49 @@ console.log(accounts);
 // const withdrawals = movements.filter(mov => mov < 0);
 // console.log(withdrawals);
 
-console.log(movements);
+// console.log(movements);
 
-//accumulator is like a snowball
-const balance = movements.reduce((acc, cur) => acc + cur, 0);
+// // accumulator is like a snowball
+// // const balance = movements.reduce((acc, cur) => acc + cur, 0);
 
 // const balance = movements.reduce(function (acc, cur, i, arr) {
 //   console.log(`Iteration Number ${i}: ${acc} in array: ${arr}`);
 //   return acc + cur;
 // }, 0);
 
-console.log(balance);
+// console.log(balance);
 
-let balance2 = 0;
-for (const mov of movements) balance2 += mov;
-console.log(balance2);
+// let balance2 = 0;
+// for (const mov of movements) balance2 += mov;
+// console.log(balance2);
 
-const max = movements.reduce((acc, mov) => {
-  if (acc > mov) return acc;
-  else return mov;
-}, movements[0]);
+// const max = movements.reduce((acc, mov) => {
+//   if (acc > mov) return acc;
+//   else return mov;
+// }, movements[0]);
 
-console.log(max);
+// console.log(max);
+
+// const euroToUsd = 1.1;
+// console.log(movements);
+
+// PIPELINE
+// const totalDepositUsd = movements
+//   .filter(mov => mov > 0)
+// .map((mov, i, arr) => {
+//   console.log({ i, arr });
+//   return mov * euroToUsd;
+// })
+//   .map(mov => mov * euroToUsd)
+//   .reduce((acc, mov) => acc + mov, 0);
+
+// console.log(totalDepositUsd);
+
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
