@@ -256,6 +256,47 @@ btnSort.addEventListener('click', function (e) {
   sorted = !sorted;
 });
 
+const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+// Empty Arrays + fill methods
+const x = new Array(7);
+console.log(7);
+
+x.fill();
+console.log(x);
+
+x.fill(1);
+console.log(x);
+
+x.fill(1, 3, 5);
+console.log(x);
+
+arr.fill(23, 4, 6);
+console.log(arr);
+
+// Array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+labelBalance.addEventListener('click', function () {
+  // I prefere this
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value')
+  );
+  console.log(movementsUI.map(el => Number(el.textContent.replace('€', ''))));
+
+  // Longer, we need to store in a variable without chaning if we use spread operator
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+  const movementsUI2Mapping = movementsUI2.map(el =>
+    Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementsUI2Mapping);
+});
+
 // Equality
 // console.log(movements);
 // console.log(movements.includes(-130));
@@ -307,9 +348,9 @@ btnSort.addEventListener('click', function (e) {
 
 // Sorting Arrays
 // String
-const owners = ['Darren', 'Jonas', 'Adam', 'Zech'];
-console.log(owners.sort());
-console.log(owners);
+// const owners = ['Darren', 'Jonas', 'Adam', 'Zech'];
+// console.log(owners.sort());
+// console.log(owners);
 
 // Numbers dont work on sort method
 
@@ -324,15 +365,15 @@ console.log(owners);
 // });
 // console.log(movements);
 
-movements.sort((a, b) => a - b);
-console.log(movements);
+// movements.sort((a, b) => a - b);
+// console.log(movements);
 
 // Descending
-movements.sort((a, b) => {
-  if (a > b) return -1;
-  if (a < b) return 1;
-});
-console.log(movements);
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (a < b) return 1;
+// });
+// console.log(movements);
 
 // /////////////////////////////////////////////////
 // const eurToUsd = 1.1;
