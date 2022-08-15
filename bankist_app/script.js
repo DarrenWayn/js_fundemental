@@ -256,46 +256,74 @@ btnSort.addEventListener('click', function (e) {
   sorted = !sorted;
 });
 
-const arr = [1, 2, 3, 4, 5, 6, 7];
-console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+// Conversion
+console.log(Number('23'));
+console.log(+'23');
+
+// Parsing
+console.log(Number.parseInt('30px', 10));
+console.log(Number.parseInt('e23', 10));
+
+console.log(Number.parseInt('  2.5rem  '));
+console.log(Number.parseFloat('  2.5rem  '));
+
+// Checking the values is not a number NaN
+console.log(Number.isNaN(20));
+console.log(Number.isNaN('20'));
+console.log(Number.isNaN(+'20'));
+console.log(Number.isNaN(23 / 0));
+
+// Checking the values is number is the best using isFinite
+console.log(Number.isFinite(20));
+console.log(Number.isFinite('20'));
+console.log(Number.isFinite(+'20X'));
+console.log(Number.isFinite(23 / 0));
+
+console.log(Number.isInteger(20));
+console.log(Number.isInteger('20'));
+console.log(Number.isInteger(+'20X'));
+console.log(Number.isInteger(23 / 0));
+
+// const arr = [1, 2, 3, 4, 5, 6, 7];
+// console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
 // Empty Arrays + fill methods
-const x = new Array(7);
-console.log(7);
+// const x = new Array(7);
+// console.log(7);
 
-x.fill();
-console.log(x);
+// x.fill();
+// console.log(x);
 
-x.fill(1);
-console.log(x);
+// x.fill(1);
+// console.log(x);
 
-x.fill(1, 3, 5);
-console.log(x);
+// x.fill(1, 3, 5);
+// console.log(x);
 
-arr.fill(23, 4, 6);
-console.log(arr);
+// arr.fill(23, 4, 6);
+// console.log(arr);
 
 // Array.from
-const y = Array.from({ length: 7 }, () => 1);
-console.log(y);
+// const y = Array.from({ length: 7 }, () => 1);
+// console.log(y);
 
-const z = Array.from({ length: 7 }, (_, i) => i + 1);
-console.log(z);
+// const z = Array.from({ length: 7 }, (_, i) => i + 1);
+// console.log(z);
 
-labelBalance.addEventListener('click', function () {
-  // I prefere this
-  const movementsUI = Array.from(
-    document.querySelectorAll('.movements__value')
-  );
-  console.log(movementsUI.map(el => Number(el.textContent.replace('€', ''))));
+// labelBalance.addEventListener('click', function () {
+//   // I prefere this
+//   const movementsUI = Array.from(
+//     document.querySelectorAll('.movements__value')
+//   );
+//   console.log(movementsUI.map(el => Number(el.textContent.replace('€', ''))));
 
-  // Longer, we need to store in a variable without chaning if we use spread operator
-  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
-  const movementsUI2Mapping = movementsUI2.map(el =>
-    Number(el.textContent.replace('€', ''))
-  );
-  console.log(movementsUI2Mapping);
-});
+//   // Longer, we need to store in a variable without chaning if we use spread operator
+//   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+//   const movementsUI2Mapping = movementsUI2.map(el =>
+//     Number(el.textContent.replace('€', ''))
+//   );
+//   console.log(movementsUI2Mapping);
+// });
 
 // Equality
 // console.log(movements);
