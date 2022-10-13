@@ -107,4 +107,13 @@ const getCountryData = country => {
     .then(data => renderCountry(data[0], 'neighbour'));
 };
 
-getCountryData('germany');
+btn.addEventListener('click', () => {
+  const loading = btn.addEventListener(
+    'load',
+    (btn.textContent = 'loading...')
+  );
+  if (loading) return;
+
+  const success = (btn.textContent = 'success...');
+  getCountryData('germany') && success;
+});
