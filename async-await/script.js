@@ -1,7 +1,7 @@
 // 'use strict';
 
-const btn = document.querySelector('.btn-country');
-const countriesContainer = document.querySelector('.countries');
+const btn = document.querySelector(".btn-country");
+const countriesContainer = document.querySelector(".countries");
 
 // const renderCountry = function (data, className = '') {
 //   const { name, region, languages, currencies, population, flags } = data;
@@ -72,7 +72,7 @@ const countriesContainer = document.querySelector('.countries');
 
 // getCountryData('portugal');
 
-const renderCountry = function (data, className = '') {
+const renderCountry = function (data, className = "") {
   const { name, region, languages, currencies, population, flags } = data;
   const html = `
     <article class="country ${className}">
@@ -88,14 +88,17 @@ const renderCountry = function (data, className = '') {
       </div>
     </article>
   `;
-  countriesContainer.insertAdjacentHTML('beforeend', html);
+  countriesContainer.insertAdjacentHTML("beforeend", html);
   countriesContainer.style.opacity = 1;
 };
 
-const getCountryData = country => {
+const getCountryData = (country) => {
   fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then(res => res.json())
-    .then(data => {
+    .then(
+      (res) => res.json(),
+      (err) => alert(err)
+    )
+    .then((data) => {
       renderCountry(data[0]);
 
       const neighbour = data[0].borders[0];
@@ -103,17 +106,17 @@ const getCountryData = country => {
 
       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
     })
-    .then(res => res.json())
-    .then(data => renderCountry(data[0], 'neighbour'));
+    .then((res) => res.json())
+    .then((data) => renderCountry(data[0], "neighbour"));
 };
 
-btn.addEventListener('click', () => {
-  const loading = btn.addEventListener(
-    'load',
-    (btn.textContent = 'loading...')
-  );
-  if (loading) return;
-
-  const success = (btn.textContent = 'success...');
-  getCountryData('germany') && success;
+btn.addEventListener("click", () => {
+  btn.textContent = "Loading...";
+  getCountryData("germany");
+  setTimeout(() => {
+    btn.textContent = "Success";
+  }, 3000);
+  setTimeout(() => {
+    btn.textContent = "Here You Go!";
+  }, 5000);
 });
