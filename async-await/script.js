@@ -7,7 +7,7 @@ const renderCountry = function (data, className = "") {
   const { name, region, languages, currencies, population, flags } = data;
   const html = `
     <article class="country ${className}">
-      <img class="country__img" src="${flags.png}" />
+      <img class="country__img" src="${flags?.png}" />
       <div class="country__data">
         <h3 class="country__name">${name.common}</h3>
         <h4 class="country__region">${region}</h4>
@@ -20,7 +20,7 @@ const renderCountry = function (data, className = "") {
     </article>
   `;
   countriesContainer.insertAdjacentHTML("beforeend", html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 // const renderLoading = (loading) => (btn.textContent = "Loading...");
@@ -380,6 +380,7 @@ GOOD LUCK 😀
 // const whereAmI = () => {
 //   getPosition()
 //     .then((position) => {
+//       console.log(position);
 //       const { latitude: lat, longitude: lng } = position.coords;
 //       return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
 //     })
@@ -461,55 +462,55 @@ GOOD LUCK 😀
 //   })
 //   .catch((err) => console.error(err));
 
-const wait = (seconds) =>
-  new Promise((resolve) => {
-    setTimeout(resolve, seconds * 1000);
-  });
+// const wait = (seconds) =>
+//   new Promise((resolve) => {
+//     setTimeout(resolve, seconds * 1000);
+//   });
 
-const imgContainer = document.querySelector(".images");
+// const imgContainer = document.querySelector(".images");
 
-const createImage = (imgPath) => {
-  const img = document.createElement("img");
-  img.src = imgPath;
+// const createImage = (imgPath) => {
+//   const img = document.createElement("img");
+//   img.src = imgPath;
 
-  return new Promise((resolve, reject) => {
-    img.addEventListener(
-      "load",
-      () => imgContainer.append(img) || resolve(img)
-    );
-    img.addEventListener("error", () =>
-      reject(new Error(console.log("Image not found")))
-    );
-  });
-};
+//   return new Promise((resolve, reject) => {
+//     img.addEventListener(
+//       "load",
+//       () => imgContainer.append(img) || resolve(img)
+//     );
+//     img.addEventListener("error", () =>
+//       reject(new Error(console.log("Image not found")))
+//     );
+//   });
+// };
 
-let currentImg;
+// let currentImg;
 
-createImage("img/img-1.jpg")
-  .then((img) => {
-    currentImg = img;
-    console.log("Image 1 loaded");
-    return wait(2);
-  })
-  .then(() => {
-    currentImg.style.display = "none";
-    return createImage("img/img-2.jpg");
-  })
-  .then((img) => {
-    currentImg = img;
-    console.log("Image 2 loaded");
-    return wait(2);
-  })
-  .then(() => {
-    currentImg.style.display = "none";
-    return createImage("img/img-3.jpg");
-  })
-  .then((img) => {
-    currentImg = img;
-    console.log("Image 3 loaded");
-    return wait(2);
-  })
-  .catch((err) => console.error(err));
+// createImage("img/img-1.jpg")
+//   .then((img) => {
+//     currentImg = img;
+//     console.log("Image 1 loaded");
+//     return wait(2);
+//   })
+//   .then(() => {
+//     currentImg.style.display = "none";
+//     return createImage("img/img-2.jpg");
+//   })
+//   .then((img) => {
+//     currentImg = img;
+//     console.log("Image 2 loaded");
+//     return wait(2);
+//   })
+//   .then(() => {
+//     currentImg.style.display = "none";
+//     return createImage("img/img-3.jpg");
+//   })
+//   .then((img) => {
+//     currentImg = img;
+//     console.log("Image 3 loaded");
+//     return wait(2);
+//   })
+//   .catch((err) => console.error(err));
 
 // SOAL PERTAMA
 // Terdapat string "NEGIE1", silahkan reverse alphabet nya dengan angka tetap diakhir kata Hasil = "EIGEN1"
@@ -575,3 +576,41 @@ createImage("img/img-1.jpg")
 //   return firstSum - secondSum;
 // };
 // console.log(diagonalDifference(Matrix));
+
+// const getApiRequest = () => {
+//   return {
+//     useGeo: async (geoEndPoint, lat, lng) =>
+//       await fetch(`${geoEndPoint}/${lat},${lng}?geoit=json`),
+//     useCountry: async (countryEndpoint, country) =>
+//       await fetch(`${countryEndpoint}/${country}`),
+//   };
+// };
+
+// const getApiRequest = {
+//   useGeo: async (geoEndPoint, lat, lng) =>
+//     await fetch(`${geoEndPoint}/${lat},${lng}?geoit=json`),
+//   useCountry: async (countryEndpoint, country) =>
+//     await fetch(`${countryEndpoint}/${country}`),
+// };
+
+// console.log(getApiRequest.useGeo());
+
+const getGeoLocation = async function () {
+  const geoLocation = await new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+  const { latitude: lat, longitude: lng } = geoLocation.coords;
+    // const { useGeo } = getApiRequest;
+  // console.log(useGeo);
+  // const data = await getApiRequest.useGeo("https://geocode.xyz", lat, lng);
+  const res = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+
+  const data = res.json();
+  console.log(data);
+  return data;
+};
+
+btn.addEventListener("click", () => {});
+
+getGeoLocation();
+console.log("First Fetch");
