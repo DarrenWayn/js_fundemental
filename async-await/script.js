@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-const btn = document.querySelector(".btn-country");
-const countriesContainer = document.querySelector(".countries");
+const btn = document.querySelector('.btn-country');
+const countriesContainer = document.querySelector('.countries');
 
-const renderCountry = function (data, className = "") {
+const renderCountry = function (data, className = '') {
   const { name, region, languages, currencies, population, flags } = data;
   const html = `
     <article class="country ${className}">
@@ -19,7 +19,7 @@ const renderCountry = function (data, className = "") {
       </div>
     </article>
   `;
-  countriesContainer.insertAdjacentHTML("beforeend", html);
+  countriesContainer.insertAdjacentHTML('beforeend', html);
   countriesContainer.style.opacity = 1;
 };
 
@@ -595,22 +595,32 @@ GOOD LUCK 😀
 
 // console.log(getApiRequest.useGeo());
 
-const getGeoLocation = async function () {
-  const geoLocation = await new Promise(function (resolve, reject) {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-  const { latitude: lat, longitude: lng } = geoLocation.coords;
-    // const { useGeo } = getApiRequest;
-  // console.log(useGeo);
-  // const data = await getApiRequest.useGeo("https://geocode.xyz", lat, lng);
-  const res = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+// const getGeoLocation = async function () {
+//   const geoLocation = await new Promise(function (resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+//   const { latitude: lat, longitude: lng } = geoLocation.coords;
+// const { useGeo } = getApiRequest;
+// console.log(useGeo);
+// const data = await getApiRequest.useGeo("https://geocode.xyz", lat, lng);
+//   const res = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//
+//   const data = res.json();
+//   console.log(data);
+//   return data;
+// };
+//
+// btn.addEventListener('click', () => {});
+//
+// getGeoLocation();
+// console.log('First Fetch');
 
-  const data = res.json();
-  console.log(data);
-  return data;
+const whereAmI = async function (country) {
+  const res = await fetch(`https://restcountries.com/v3.1/name/${country}`);
+  console.log(res);
 };
 
-btn.addEventListener("click", () => {});
-
-getGeoLocation();
-console.log("First Fetch");
+btn.addEventListener('click', () => {
+  whereAmI('portugal');
+});
+console.log('First');
